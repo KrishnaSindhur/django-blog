@@ -1,5 +1,19 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
+
+post = [
+    {
+        "author" : "krishna",
+        "title" : "spatans",
+        "date" : "january 7, 2019"
+    },
+    {
+        "author": "ninad",
+        "title": "pokemon",
+        "date": "january 8, 2019"
+    }
+
+]
 
 def home(request):
     """
@@ -7,12 +21,15 @@ def home(request):
     :param request:
     :return:
     """
-    return HttpResponse('<h1> my blog home</h1>')
+    context = {
+        'posts': post
+    }
+    return render(request, 'blog/home.html', context)
 
-def about(response):
+def about(request):
     """
 
     :param response:
     :return:
     """
-    return HttpResponse('<h1> my blog about </h1>')
+    return render(request, 'blog/about.html', {"title": "About"})
